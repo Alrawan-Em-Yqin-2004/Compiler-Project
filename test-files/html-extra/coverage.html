@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<!-- 1. comment
+     over several lines, with a > inside -->
+<HTML lang="ar" DIR=rtl xmlns:th="http://www.thymeleaf.org">
+<HEAD>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Coverage test</title>
+    <link rel="stylesheet" href="style.css">
+    <style type="text/css">
+        .a > .b { color: red; }   /* a > inside style */
+    </style>
+    <script src="app.js"></script>
+    <script>
+        if (a < b && c > d) { document.write("<p>not a tag</p>"); }
+    </script>
+    <!--[if IE]><link rel="stylesheet" href="ie.css"><![endif]-->
+</HEAD>
+<BODY class="home page" id=main data-user-id="42" aria-hidden="true" @click="go()" :class="x" disabled>
+
+    <!-- 2. void elements: with and without slash -->
+    <br>
+    <br/>
+    <hr />
+    <img src="a.png" alt="photo">
+    <input type="text" name = "q" value = 'x' required>
+
+    <!-- 3. text, entities, Arabic, nested inline tags -->
+    <h1>Title &amp; more &nbsp; &#169; &lt;tag&gt;</h1>
+    <p>مرحبا <b>بالعالم</b> and <i>nested <u>deep</u></i> text.</p>
+
+    <!-- 4. attributes: all value forms, th:* and newlines in values -->
+    <a href="/x?a=1&b=2" title='He said "hi"' th:href="@{'/images/' + ${p.image}}"
+       th:text="${a > b ? 'yes' : 'no'}"
+       class="multi
+              line">Link</a>
+
+    <!-- 5. lists, tables, forms -->
+    <ul><li>one</li><li>two</li></ul>
+    <table border=1>
+        <tr><th>A</th><td>1</td></tr>
+    </table>
+    <form action="/save" method="post">
+        <textarea name="t" rows="4">some text</textarea>
+        <select><option value="1" selected>One</option></select>
+        <button type="submit">Save</button>
+    </form>
+
+    <!-- 6. custom element, svg, uppercase closing tag -->
+    <my-component some-prop="1"></my-component>
+    <svg viewBox="0 0 10 10"><circle cx="5" cy="5" r="4"/></svg>
+    <DIV>upper</div>
+
+    <![CDATA[ raw > data ]]>
+</BODY>
+</HTML>
